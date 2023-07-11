@@ -1,0 +1,1 @@
+* This directory is for store all user profile images when an account is created *

@@ -1,0 +1,1 @@
+* This directory is for store all images uploaded from users in the website *
