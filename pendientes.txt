@@ -1,1 +1,9 @@
-Falta corregir la paginacion para que cuando el total de paginas sea mayor a 5 ya no se muestren por pantalla los botones, pero que si se llega al borde se vayan recorriendo los numeros de pagina y viceversa
+> Falta corregir la paginacion para que cuando el total de paginas sea mayor a 5 ya no se muestren por pantalla los botones, pero que si se llega al borde se vayan recorriendo los numeros de pagina y viceversa
+> Falta reducir el tamaño de las imagenes que se suben al servidor
+> Falta corregir el boton (disabled) para cuando se intenta subir una imagen
+> Falta agregar la paginacion a la seccion de mensajes
+
+> Falta agregar las validaciones necesarias al inicio de sesion
+> Falta pasar el codigo js al archivo main.js
+
+> Correcion de errores pequeños

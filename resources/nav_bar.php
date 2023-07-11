@@ -1,76 +1,4 @@
-<?php
-session_start();
-
-$logged = false;
-$administrator = false;
-
-if (isset($_SESSION['id_usuario'])) {
-    require_once "resources/conn.php";
-
-    $logged = true;
-    
-    $user_id = $_SESSION['id_usuario'];
-    $username = $_SESSION['nombre_usuario'];
-    $access = $_SESSION['rol'];
-    $owner = $_SESSION['owner'];
-
-    if ($access == "admin") {
-        $administrator = true;
-    }
-}
-
-function alert_admin_access($message, $logged, $administrator) {
-    if (!$logged || !$administrator) {
-        echo "
-            <div class='container alert alert-danger mt-4 mb-5'>
-                <div class='text-center'>
-                    $message
-                </div>
-            </div>";
-        
-        require_once "resources/footer.php";
-        exit();
-    }
-}
-
-function alert_login_access($message, $logged) {
-    if (!$logged) {
-        echo "
-            <div class='container alert alert-danger mt-4 mb-5'>
-                <div class='text-center'>
-                    $message
-                </div>
-            </div>";
-        
-        require_once "resources/footer.php";
-        exit();
-    }
-}
-
-function user_not_found() {
-    echo "
-        <div class='container alert alert-danger mt-4 mb-5'>
-            <div class='text-center'>
-                Cuenta no disponible, probablemente se haya actualizado/eliminado el perfil
-            </div>
-        </div>";
-    
-    require_once "resources/footer.php";
-    exit();
-}
-
-function album_not_found() {
-    echo "
-        <div class='container alert alert-danger mt-4 mb-5'>
-            <div class='text-center'>
-                Albúm no disponible, probablemente se haya removido o eliminado
-            </div>
-        </div>";
-    
-    require_once "resources/footer.php";
-    exit();
-}
-?>
+<?php require_once "functions.php"; ?>
 
 <nav class="navbar navbar-expand-lg navbar-expand-md navbar-dark bg-dark bg-gradient fixed-top border-bottom border-secondary">
     <div class="container-fluid">
@@ -129,3 +57,9 @@ function album_not_found() {
     </div>
 </nav>
 <hr class="mt-5">
+
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="row g-0 my-3">

@@ -1,10 +1,9 @@
 <?php
-
 function show_gallery($conn, $sql, $message = "", $bg = "bg-primary", $page = "") {
     $sql_get_data = mysqli_query($conn, $sql);
 
     if (!(mysqli_num_rows($sql_get_data) > 0)) {
-	    echo "<h4 class='text-center mb-3 mt-5'>$message</h4>";
+	    echo "<h4 class='text-center my-5'>$message</h4>";
 	}
                                         
     $last_album_name = " ";
@@ -29,7 +28,7 @@ function show_gallery($conn, $sql, $message = "", $bg = "bg-primary", $page = ""
 
         if ($last_album_name != $album_name) {
             $last_album_name = $album_name;
-            echo "<h5 class='container text-center border-dark rounded-1 p-2 $bg bg-gradient text-white mt-3 mb-3'><a href='albums.php?album=$album_encoded_id' class='text-decoration-none text-white'>Albúm: $last_album_name</a></h5>";
+            echo "<h5 class='container text-center border-dark rounded-1 p-2 $bg bg-gradient text-white my-3'><a href='albums.php?album=$album_encoded_id' class='text-decoration-none text-white'>Albúm: $last_album_name</a></h5>";
             $counter = 0;
         }
 
@@ -49,18 +48,15 @@ function show_gallery($conn, $sql, $message = "", $bg = "bg-primary", $page = ""
 
         echo "
             <div class='container col-md-4 d-flex justify-content-center align-items-center flex-md-row flex-column'>
-                <div class=''>
-                    <figure class='figure'>
-                        <img src='images/$image_name' class='figure-img img-fluid rounded border' alt='Recurso no disponible' onclick='load_modal(\"$image_id\", \"$image_name\", \"$album_name\", \"$date_uploaded\", \"$profile_encoded_id\", \"$user_name\", \"$profile_image\", \"$btn_delete\")' data-bs-toggle='modal' data-bs-target='#exampleModal'>
-                        <figure class='text-end'>
-                            <blockquote class='blockquote'>
-                            </blockquote>
-                            <figcaption class='blockquote-footer'>
+                <figure class='figure'>
+                    <img src='images/$image_name' class='figure-img img-fluid rounded border' alt='Recurso no disponible' onclick='load_modal(\"$image_id\", \"$image_name\", \"$album_name\", \"$date_uploaded\", \"$profile_encoded_id\", \"$user_name\", \"$profile_image\", \"$btn_delete\")' data-bs-toggle='modal' data-bs-target='#exampleModal'>
+                    <figure class='text-end'>
+                        <blockquote class='blockquote'></blockquote>
+                        <figcaption class='blockquote-footer'>
                             Subido por: <span class='text-primary'>$user_name</span> el <cite title='Source Title'><span class='text-success'>$date_uploaded</span></cite>
-                            </figcaption>
-                        </figure>
+                        </figcaption>
                     </figure>
-                </div>
+                </figure>
             </div>";
         $counter += 1;
     }
