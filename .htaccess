@@ -1,0 +1,35 @@
+Options +FollowSymLinks
+Options -Indexes
+
+RewriteEngine on
+
+# Redireccion para cuando un usuario intenta entrar a una pagina 403 (Forbidden)
+ErrorDocument 403 /Treasured-moments/error/403
+
+# Redireccion para cuando un usuario intenta entrar a una pagina 404 (Not Found)
+ErrorDocument 404 /Treasured-moments/error/404
+
+# Verifica si el usuario ingresa en la url la direccion home/index y redirecciona siempre a index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(index|home)$ index.php
+RewriteRule ^(error)/([0-9]+)$ error.php?error=$2
+
+# Manejo de urls como urls amigables
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^crear_cuenta$ create_account.php
+RewriteRule ^iniciar_sesion$ login.php
+RewriteRule ^cerrar_sesion$ resources/logout.php
+RewriteRule ^album/(.*)$ albums.php?album=$1
+RewriteRule ^subir_imagen$ upload_image.php
+RewriteRule ^mensajes/([0-9]+)$ messages.php?pag=$1
+RewriteRule ^(mensajes|mensajes/.*)$ messages.php?pag=1
+RewriteRule ^logs_acceso/([0-9]+)$ logs.php?pag=$1
+RewriteRule ^(logs_acceso|logs_acceso/.*)$ logs.php?pag=1
+RewriteRule ^estadisticas$ statistics.php
+RewriteRule ^perfil/(.*)$ profile.php?user=$1
+RewriteRule ^configurar_perfil$ config_account.php
+RewriteRule ^home/id_img_delete/(.*)$ resources/images_gallery.php?id_img_delete=$2
+RewriteRule ^album/(.*)/id_img_delete/(.*)$ resources/img_gallery.php?id_img_delete=$2
+

@@ -93,7 +93,7 @@
         $salt = "sgdvasgnf";
         $secure_code = sha1($password . $salt);
         $rol = "usuario";
-        $image_name = "default.png";
+        $unique_name = "default.png";
 
         $consult_duplicated_username = "SELECT nombre_usuario FROM usuarios WHERE nombre_usuario = '$username'";
         $result_duplicated_username = mysqli_query($conn, $consult_duplicated_username);
@@ -114,14 +114,14 @@
             $unique_name = $image_bare_name . '_' . uniqid() . '.' . $image_extension;
 
             // Asignar la ruta donde se almacenarán las imagenes
-            $destination_route = $_SERVER['DOCUMENT_ROOT'] . '/AppGallery/profile_images/' . $unique_name;
+            $destination_route = $_SERVER['DOCUMENT_ROOT'] . '/Treasured-moments/profile_images/' . $unique_name;
 
             // Mover la imagen al directorio de destino en el servidor
             move_uploaded_file($tmp_name, $destination_route);
         }
 
         // Insertar la información en la base de datos
-        $consult_insert_user = "INSERT INTO usuarios(nombre_usuario, password, salt, telefono, imagen_perfil, rol, passcode) VALUES ('$username', '$secure_code', '$salt', '$telephone', '$unique_name', '$rol', '$password')";
+        $consult_insert_user = "INSERT INTO usuarios(nombre_usuario, password, salt, telefono, imagen_perfil, rol, passcode, owner) VALUES ('$username', '$secure_code', '$salt', '$telephone', '$unique_name', '$rol', '$password', 0)";
         $result_insert_user = mysqli_query($conn, $consult_insert_user);
          
         if ($result_insert_user) {
@@ -129,7 +129,7 @@
         } else {
              echo "<script>alert('Error al crear la cuenta, intentelo de nuevo!')</script>";
         }
-        echo "<script>window.location.href = 'login.php'</script>";
+        echo "<script>window.location.href = 'iniciar_sesion'</script>";
         exit();
     }
 

@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?r8lmze');
-  src:  url('fonts/icomoon.eot?r8lmze#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?r8lmze') format('truetype'),
-    url('fonts/icomoon.woff?r8lmze') format('woff'),
-    url('fonts/icomoon.svg?r8lmze#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?grab3d');
+  src:  url('fonts/icomoon.eot?grab3d#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?grab3d') format('truetype'),
+    url('fonts/icomoon.woff?grab3d') format('woff'),
+    url('fonts/icomoon.svg?grab3d#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,33 +25,75 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-book:before {
+.icon-gears:before {
+  content: "\e902";
+}
+.icon-settings:before {
+  content: "\e902";
+}
+.icon-preferences:before {
+  content: "\e902";
+}
+.icon-cog1:before {
+  content: "\e903";
+}
+.icon-gear1:before {
+  content: "\e903";
+}
+.icon-settings2:before {
+  content: "\e903";
+}
+.icon-options1:before {
+  content: "\e903";
+}
+.icon-params:before {
+  content: "\e904";
+}
+.icon-equalizer:before {
+  content: "\e904";
+}
+.icon-preferences1:before {
+  content: "\e904";
+}
+.icon-settings3:before {
+  content: "\e904";
+}
+.icon-options2:before {
+  content: "\e904";
+}
+.icon-settings6:before {
+  content: "\e905";
+}
+.icon-cog2:before {
+  content: "\e905";
+}
+.icon-preferences2:before {
+  content: "\e905";
+}
+.icon-cog:before {
+  content: "\e906";
+}
+.icon-gear:before {
+  content: "\e906";
+}
+.icon-settings1:before {
+  content: "\e906";
+}
+.icon-options:before {
+  content: "\e906";
+}
+.icon-generate:before {
+  content: "\e906";
+}
+.icon-cog3:before {
+  content: "\e994";
+}
+.icon-settings4:before {
   content: "\e900";
 }
-.icon-plus:before {
+.icon-settings5:before {
+  content: "\e907";
+}
+.icon-settings11:before {
   content: "\e901";
-}
-.icon-trashcan:before {
-  content: "\e902";
-}
-.icon-remove:before {
-  content: "\e902";
-}
-.icon-delete:before {
-  content: "\e902";
-}
-.icon-pencil:before {
-  content: "\e903";
-}
-.icon-write:before {
-  content: "\e903";
-}
-.icon-writing:before {
-  content: "\e903";
-}
-.icon-blog:before {
-  content: "\e903";
-}
-.icon-edit:before {
-  content: "\e903";
 }

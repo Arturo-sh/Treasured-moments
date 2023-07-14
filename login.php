@@ -40,7 +40,7 @@ session_start();
                             </div>
 
                             <div class="text-center">
-                                <span>Aún no tiene una cuenta, <a href="create_account.php" style="text-decoration: none;">cree una aquí</a></span>
+                                <span>Aún no tiene una cuenta, <a href="crear_cuenta" style="text-decoration: none;">cree una aquí</a></span>
                             </div>
 
                             </form>
@@ -85,7 +85,7 @@ session_start();
                 $consult_insert_log = "INSERT INTO logs(id_usuario) VALUES($id_user_log)";
                 $result_insert_log = mysqli_query($conn, $consult_insert_log);
 
-                header('Location: index.php');
+                header('Location: home');
             }
         } else {
             echo "

@@ -127,7 +127,7 @@ if (isset($_POST['btn_actualizar_password'])) {
         echo "
             <script>
                 alert('Contraseña cambiada');
-                window.location.href = 'config_account.php';    
+                window.location.href = 'configurar_perfil';    
             </script>";
     } else {
         echo "<script>alert('Ha ocurrido un error al actualizar la contraseña, intentelo de nuevo o contacte con el administrador!')</script>";
@@ -182,7 +182,7 @@ if (isset($_POST['btn_actualizar'])) {
         echo "
             <script>
                 alert('Datos de la cuenta actualizados, es necesario volver a iniciar sesión para completar la configuración');
-                window.location.href = 'resources/logout.php';
+                window.location.href = 'cerrar_sesion';
             </script>";
     } else {
         echo "<script>alert('Ha ocurrido un error al actualizar los datos, intentelo de nuevo o contacte con el administrador!')</script>";

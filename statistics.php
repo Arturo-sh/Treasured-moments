@@ -1,7 +1,6 @@
 <?php require_once "resources/header.php"; ?>
 <?php require_once "resources/nav_bar.php"; ?>
 
-    
 <?php
 alert_admin_access("Necesita iniciar sesión como usuario administrador para acceder al contenido de esta página", $logged, $administrator);
 

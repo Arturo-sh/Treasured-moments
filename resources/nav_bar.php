@@ -7,24 +7,19 @@
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center mt-1">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.php">Imagenes</a>
+                    <a class="nav-link active" aria-current="page" href="home">Imagenes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="messages.php">Mensajes</a>
+                    <a class="nav-link active" aria-current="page" href="mensajes">Mensajes</a>
                 </li>
                 <?php
                     if ($logged) {
                         echo "
                             <div class='text-center'>
-                                <a href='upload_image.php' class='btn btn-sm btn-outline-success text-white m-1'>Subir imagen(es)</a>
-                            </div>";
-
-                        echo "
-                            <div class='dropdown'>
-                                <button class='btn btn-sm btn-outline-warning dropdown-toggle m-1' type='button' id='dropdownMenuButton2' data-bs-toggle='dropdown' aria-expanded='false'>$username</button>
-                                <ul class='dropdown-menu dropdown-menu-dark' aria-labelledby='dropdownMenuButton2'>
-                                    <li><a class='dropdown-item' href='config_account.php'>Configurar perfil</a></li>
-                                </ul>
+                                <a href='subir_imagen' class='btn btn-sm btn-outline-success text-white m-1'>Subir imagen(es)</a>
+                            </div>
+                            <div class='text-center'>
+                                <a href='configurar_perfil' class='btn btn-sm btn-outline-warning m-1'><span class='icon-params'></span> $username</a>
                             </div>";
                     }
                 ?>
@@ -34,22 +29,22 @@
             if (!$logged) {
                 echo "
                     <div class='text-center'>
-                        <a href='login.php' class='btn btn-sm btn-outline-success text-white m-1'>Iniciar sesión</a>
+                        <a href='iniciar_sesion' class='btn btn-sm btn-outline-success text-white m-1'>Iniciar sesión</a>
                     </div>";
             } else {
                 if ($administrator) {
                     echo "
                         <div class='text-center'>
-                            <a href='statistics.php' class='btn btn-sm btn-outline-primary m-1' aria-current='page'>Estadísticas</a>
+                            <a href='estadisticas' class='btn btn-sm btn-outline-primary m-1' aria-current='page'>Estadísticas</a>
                         </div>";
                     echo "
                         <div class='text-center'>
-                            <a href='logs.php' class='btn btn-sm btn-outline-info m-1' aria-current='page'>Logs de acceso</a>
+                            <a href='logs_acceso' class='btn btn-sm btn-outline-info m-1' aria-current='page'>Logs de acceso</a>
                         </div>";
                 }
                 echo "
                     <div class='text-center'>
-                        <a href='resources/logout.php' class='btn btn-sm btn-outline-danger text-white m-1'>Cerrar sesión</a>
+                        <a href='cerrar_sesion' class='btn btn-sm btn-outline-danger text-white m-1'>Cerrar sesión</a>
                     </div>";
             }
             ?>

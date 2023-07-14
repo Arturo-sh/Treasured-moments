@@ -139,7 +139,7 @@ if(isset($_POST['btn_guardar'])) {
         // Verifica si las inserciones fueron exitosas
         if ($result_insert_upload && $result_insert_image) {
             
-            echo "<script>window.location.href = 'index.php'</script>";
+            echo "<script>window.location.href = 'home'</script>";
             exit();
         } else {
             echo "<h5 class='text-center text-danger'>Ha ocurrido un error al subir la imagen, revise el tamaño/extensión e inténtelo de nuevo </h5>"; // Error en la inserción

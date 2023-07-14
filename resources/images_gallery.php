@@ -28,7 +28,7 @@ function show_gallery($conn, $sql, $message = "", $bg = "bg-primary", $page = ""
 
         if ($last_album_name != $album_name) {
             $last_album_name = $album_name;
-            echo "<h5 class='container text-center border-dark rounded-1 p-2 $bg bg-gradient text-white my-3'><a href='albums.php?album=$album_encoded_id' class='text-decoration-none text-white'>Albúm: $last_album_name</a></h5>";
+            echo "<h5 class='container text-center border-dark rounded-1 p-2 $bg bg-gradient text-white my-3'><a href='album/$album_encoded_id' class='text-decoration-none text-white'>Albúm: $last_album_name</a></h5>";
             $counter = 0;
         }
 
@@ -61,40 +61,22 @@ function show_gallery($conn, $sql, $message = "", $bg = "bg-primary", $page = ""
         $counter += 1;
     }
 }
-
 ?>
 
 <?php
-    if (isset($_GET['id_img_delete'])) {
-        require_once "resources/conn.php";
+    if (isset($_POST['btn_img_delete'])) {
+        require_once "conn.php";
 
-        $id_img_delete = $_GET['id_img_delete'];
-        $user_session_id = $_SESSION['id_usuario'];
-        $user_id = null;
+        $img_delete_id = $_POST['img_delete_id'];
+        $user_encoded_id = $_POST['user_id'];
+        $user_id = base64_decode($user_encoded_id);
 
-        $sql_search_upload = "SELECT id_subida FROM imagenes WHERE id_imagen = '$id_img_delete'";
-        $result_search_upload = mysqli_query($conn, $sql_search_upload);
-        if (mysqli_num_rows($result_search_upload) > 0) {
-            $data = mysqli_fetch_array($result_search_upload, MYSQLI_ASSOC);
-            $id_subida = $data['id_subida'];
-
-            $sql_verify_user = "SELECT id_usuario FROM subidas WHERE id_subida = '$id_subida'";
-            $result_verify_user = mysqli_query($conn, $sql_verify_user);
-            $row = mysqli_fetch_array($result_verify_user, MYSQLI_ASSOC);
-            $user_id = $row['id_usuario'];
-        }
-
-        if ($user_session_id == $user_id) {
-            $script_name = basename($_SERVER['SCRIPT_NAME']);
-            $parametersGET = $_SERVER['QUERY_STRING'];
-            $url_with_parameters = $script_name . '?' . $parametersGET;
-            $redirect_url = explode("?&id_img_delete", $url_with_parameters);
-
-            $consult_delete_image = "DELETE FROM imagenes WHERE id_imagen = '$id_img_delete'";
+        if ($user_id == $_SESSION['id_usuario']) {
+            $consult_delete_image = "DELETE FROM imagenes WHERE id_imagen = '$img_delete_id'";
             $result_image_delete = mysqli_query($conn, $consult_delete_image);
 
             if ($result_image_delete) {
-                echo "<script>window.location.href = '$redirect_url[0]';</script>";
+                echo "<script>window.location.href = 'home';</script>";
             }
         }
     }
@@ -104,13 +86,19 @@ function show_gallery($conn, $sql, $message = "", $bg = "bg-primary", $page = ""
     <div class='modal-dialog modal-dialog-centered'>
         <div class='modal-content bg-dark text-white'>
             <div class='modal-header'>
-                <h5 class="modal-title">Imagen: <span class='text-danger' id='exampleModalLabel'></span></h5>
+                <h6 class="modal-title">Imagen: <span class='text-primary' id='exampleModalLabel'></span></h6>
                 <button type='button' class='btn-close bg-white' data-bs-dismiss='modal' aria-label='Close'></button>
             </div>
             <div class='modal-body text-center'>
                 <img id='modal_content_img' src='images/' class='figure-img img-fluid rounded border' alt='Recurso no disponible'>
                 <p class="text-center m-0">Subido el: <span class="text-info" id="date_uploaded"></span> por: <a href="#" id="profile_link"><span class="text-warning" id="author"></span><img src="profile_images/" id="profile_img" style="margin: 5px; width: 50px; height: 50px; border-radius: 50%;" alt="Recurso no disponible"></a></p>
-                <button class='btn btn-sm btn-outline-danger d-none' onclick='' id="btn_delete">Eliminar</button>
+                <div class="container">
+                    <form action="" method="POST" id="form_img_delete">
+                        <input type="hidden" value="" id="img_id" name="img_delete_id">
+                        <input type="hidden" value="" id="user_id" name="user_id">
+                        <button class='btn btn-sm btn-outline-danger d-none' id="btn_delete" name="btn_img_delete">Eliminar</button>
+                    </form>
+                </div>
             </div>
             <div class='modal-footer'></div>
         </div>
@@ -126,25 +114,23 @@ function show_gallery($conn, $sql, $message = "", $bg = "bg-primary", $page = ""
         let new_route_img = image_url[0] + "/images/" + image_name;
         modal_img.src = new_route_img;
 
-        document.getElementById("profile_link").href = "profile.php?user=" + profile_encoded_id;
+        document.getElementById("profile_link").href = "perfil/" + profile_encoded_id;
         document.getElementById("profile_img").src = "profile_images/" + profile_image;
 
         document.getElementById("author").textContent = user_name;
         document.getElementById("date_uploaded").textContent = date_uploaded;
-
+        
         let btn_del = document.getElementById("btn_delete");
-
+        
         if (btn_delete) {
             btn_del.classList.remove("d-none");
-            
+
+            img_id.value = image_id;
+            user_id.value = profile_encoded_id;
+
             btn_del.addEventListener("click", () => {
-                if (confirm("¿Realmente desea borrar esta imagen?")) {
-                    let current_url = window.location.href; 
-                    window.location.href = current_url + "?&id_img_delete=" + image_id;
-                }
+               
             });
-        } else {
-            btn_del.classList.add("d-none");
         }
     }
 </script>
