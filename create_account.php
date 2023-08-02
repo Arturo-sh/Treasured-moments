@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -92,7 +94,7 @@
         $password = htmlspecialchars($_POST['password'], ENT_QUOTES, 'UTF-8');
         $salt = "sgdvasgnf";
         $secure_code = sha1($password . $salt);
-        $rol = "usuario";
+        if (trim($telephone) == "") $telephone = "No agregado";
         $unique_name = "default.png";
 
         $consult_duplicated_username = "SELECT nombre_usuario FROM usuarios WHERE nombre_usuario = '$username'";
@@ -121,14 +123,13 @@
         }
 
         // Insertar la información en la base de datos
-        $consult_insert_user = "INSERT INTO usuarios(nombre_usuario, password, salt, telefono, imagen_perfil, rol, passcode, owner) VALUES ('$username', '$secure_code', '$salt', '$telephone', '$unique_name', '$rol', '$password', 0)";
+        $consult_insert_user = "INSERT INTO usuarios(nombre_usuario, password, telefono, imagen_perfil, passcode) VALUES ('$username', '$secure_code', '$telephone', '$unique_name', '$password')";
         $result_insert_user = mysqli_query($conn, $consult_insert_user);
          
         if ($result_insert_user) {
-             echo "<script>alert('Cuenta creada exitosamente')</script>";
-        } else {
-             echo "<script>alert('Error al crear la cuenta, intentelo de nuevo!')</script>";
+            $_SESSION['account_status'] = "success";
         }
+
         echo "<script>window.location.href = 'iniciar_sesion'</script>";
         exit();
     }

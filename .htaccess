@@ -28,6 +28,7 @@ RewriteRule ^(mensajes|mensajes/.*)$ messages.php?pag=1
 RewriteRule ^logs_acceso/([0-9]+)$ logs.php?pag=$1
 RewriteRule ^(logs_acceso|logs_acceso/.*)$ logs.php?pag=1
 RewriteRule ^estadisticas$ statistics.php
+RewriteRule ^imagenes_eliminadas$ deleted_images.php
 RewriteRule ^perfil/(.*)$ profile.php?user=$1
 RewriteRule ^configurar_perfil$ config_account.php
 RewriteRule ^home/id_img_delete/(.*)$ resources/images_gallery.php?id_img_delete=$2

@@ -25,10 +25,6 @@ if (isset($_GET['user'])) {
         $rol = $row['rol'];
     }
 
-    if (empty($telephone)) {
-        $telephone = "No agregado";
-    }
-
     echo "
         <div class='container border rounded-1 mb-3'>
             <div class='row d-flex justify-content-center align-items-center p-3'>

@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+<?php session_start(); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,6 +16,25 @@ session_start();
 			<div class="row justify-content-sm-center h-100">
 				<div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9 d-flex align-items-center justify-content-center vh-100">
 					<div class="card shadow-lg vw-100 bg-dark bg-gradient">
+                        <?php
+                        if (isset($_SESSION['account_status'])) {
+                            $type_alert = "alert-danger";
+                            $message = "Error al crear la cuenta, intentelo de nuevo!";
+
+                            if ($_SESSION['account_status'] == "success") {
+                                $type_alert = "alert-success";
+                                $message = "Cuenta creada satisfactoriamente";
+                            }
+
+                            echo "
+                                <div class='container alert $type_alert'>
+                                    <div class='text-center'>
+                                        $message
+                                    </div>
+                                </div>";
+                            unset($_SESSION['account_status']);
+                        }
+                        ?>
 						<div class="card-body p-5">
 							<h1 class="fs-4 card-title fw-bold mb-4">Iniciar Sesión</h1>
                             <form action="" method="POST">

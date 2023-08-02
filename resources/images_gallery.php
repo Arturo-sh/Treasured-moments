@@ -44,6 +44,7 @@ function show_gallery($conn, $sql, $message = "", $bg = "bg-primary", $page = ""
             if ($_SESSION['id_usuario'] == $user_id) {
                 $btn_delete = true;
             }
+            if ($page == "deleted_images") $btn_delete = false;
         }
 
         echo "

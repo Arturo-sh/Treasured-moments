@@ -35,6 +35,10 @@
                 if ($administrator) {
                     echo "
                         <div class='text-center'>
+                            <a href='imagenes_eliminadas' class='btn btn-sm btn-outline-danger m-1' aria-current='page'>Fotos eliminadas</a>
+                        </div>";
+                    echo "
+                        <div class='text-center'>
                             <a href='estadisticas' class='btn btn-sm btn-outline-primary m-1' aria-current='page'>Estadísticas</a>
                         </div>";
                     echo "
